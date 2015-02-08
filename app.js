@@ -44,10 +44,6 @@ io.sockets.on('connection', function (socket) {
 
 	searching[socket.id]=socket
 
-	//var clients=findClientsSocket();
-
-//    console.log(clients);
-
 	found="";
     console.log("Socketid:" + socket.id);
 	for(var client in searching)
@@ -82,23 +78,3 @@ io.sockets.on('connection', function (socket) {
 
 
 });
-
-
-function findClientsSocket(roomId, namespace) {
-    var res = []
-    , ns = io.of(namespace ||"/");    // the default namespace is "/"
-
-    if (ns) {
-        for (var id in ns.connected) {
-            if(roomId) {
-                var index = ns.connected[id].rooms.indexOf(roomId) ;
-                if(index !== -1) {
-                    res.push(ns.connected[id]);
-                }
-            } else {
-                res.push(ns.connected[id]);
-            }
-        }
-    }
-    return res;
-}
