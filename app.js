@@ -2,9 +2,7 @@ var app = require('http').createServer(handler)
   , io = require('socket.io').listen(app)
   , fs = require('fs')
 
-  var searching = {};
-
-//test
+var searching = {};
 
 app.listen(process.env.PORT || 5000);
 
