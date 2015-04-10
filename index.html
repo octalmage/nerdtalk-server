@@ -3,89 +3,13 @@
 
 <head>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
-
-<script src="/socket.io/socket.io.js"></script>
-<script>
-var socket = io.connect();
-
-
-$(document).ready(function ()
-{
-
-	socket.on('found', function (data) {
-		if (data.friend!="none")
-		{
-			$.mobile.loading( "hide" );
-			$("#find").hide()
-			$("#chat").show()
-		}
-	
-	})
-	
-	socket.on('receive', function (data) {
-	li="<li>{message}</li>"
-	$("#messages").append(li.replace("{message}", data));
-	$("#messages").listview("refresh");
-		console.log(data)
-		
-	
-	})
-
-	$("#findButton").on("tap", function ()
-	{
-		socket.emit('find', {user: "jason"});
-		
-		  $.mobile.loading( "show" );
-	})
-	
-	
-	$("#message").on("keydown", function(e)
-	{
-		if (e.keyCode==13)
-		{
-			message=$("#message").val()
-			$("#message").val("")
-			socket.emit('message', message);
-			
-		}
-	});
-	
-
-	
-})
-	
-</script>
-
+<title>nerdtalk</title>
 </head>
 
 
 <body>
-	<div data-role="page">
-		<div data-role="header">
-			<h1>Rodango</h1>
-		</div><!-- /header -->
-	
-		<div data-role="content">
-			<div id="find">
-				<a href="#" data-role="button" id="findButton">Find</a>
-			</div>
-			<div id="chat" style="display:none">
-			
-				<ul data-role="listview" id="messages"  style="padding-bottom:25px;">
-				
-				
-				</ul>
-				<input type="text" id="message">
-				
-			</div>
-			
-			
-		</div>
-	</div>
+<h1>nerdtalk</h1>
+<a href="https://github.com/octalmage/nerdtalk">https://github.com/octalmage/nerdtalk</a>
 </body>
 
 
