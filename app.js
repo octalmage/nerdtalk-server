@@ -59,8 +59,8 @@ io.on("connection", function(socket)
     
     socket.on("chat message", function(msg)
     {
-        socket.broadcast.to(socket.id).emit('receive', msg);
-        //console.log(io.sockets.adapter.rooms[socket.id]);
+        socket.broadcast.to(socket.id).emit("receive", msg)
+        
         console.log('message: ' + msg);
     });
   
