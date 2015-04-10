@@ -57,9 +57,7 @@ io.on("connection", function(socket)
     
     socket.on("chat message", function(msg)
     {
-        socket.broadcast.to(socket.id).emit("receive", msg)
-        
-        console.log('message: ' + msg);
+        socket.broadcast.to(socket.id).emit("receive", msg);
     });
   
   
@@ -74,5 +72,4 @@ function count()
     }
     return i;
 }
-
 
