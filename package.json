@@ -1,7 +1,16 @@
 {
-    "name": "nerdtalk-server",
-    "version": "0.0.1",
-    "dependencies": {
-      "socket.io": "*"
-  }
+	"name": "nerdtalk-server",
+	"version": "0.0.1",
+	"dependencies":
+	{
+		"socket.io": "*"
+	},
+	"scripts":
+	{
+		"start": "node app.js"
+	},
+	"engines":
+	{
+		"node": "0.11.x"
+	}
 }
