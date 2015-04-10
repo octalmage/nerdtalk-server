@@ -46,6 +46,7 @@ io.on("connection", function(socket)
             
     		socket.join(socket.id);
     		found.join(socket.id);
+            
             socket.join(found.id);
     		found.join(found.id);
             
@@ -59,4 +60,19 @@ io.on("connection", function(socket)
     {
         socket.broadcast.to(socket.id).emit("receive", msg);
     });
+    
+    socket.on("disconnect", function () 
     {
+        //If is searching.
+        if (searching[socket.id])
+        {
+            //Remove from searching queue.
+            delete searching[socket.id];
+        }
+        else
+        {
+            //Send disconnected message.
+            socket.broadcast.to(socket.id).emit("user disconnected");   
+        }
+    });     
+});
