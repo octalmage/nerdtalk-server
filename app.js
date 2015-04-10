@@ -59,17 +59,4 @@ io.on("connection", function(socket)
     {
         socket.broadcast.to(socket.id).emit("receive", msg);
     });
-  
-  
-});
-
-function count()
-{
-    var i=0;
-    for (var client in searching)
     {
-        i++;
-    }
-    return i;
-}
-
