@@ -6,14 +6,15 @@ var searching = {};
 
 app.listen(process.env.PORT || 5000);
 
-function handler (req, res) {
+function handler (req, res) 
+{
   fs.readFile(__dirname + '/index.html',
   function (err, data) {
     if (err) {
       res.writeHead(500);
       return res.end('Error loading index.html');
     }
-
+    data = data.toString().replace("{online}", "<br>Online: " + findClientsSocket().length);
     res.writeHead(200);
     res.end(data);
   });
@@ -76,3 +77,22 @@ io.on("connection", function(socket)
         }
     });     
 });
+
+function findClientsSocket(roomId, namespace) {
+    var res = []
+    , ns = io.of(namespace ||"/");    // the default namespace is "/"
+
+    if (ns) {
+        for (var id in ns.connected) {
+            if(roomId) {
+                var index = ns.connected[id].rooms.indexOf(roomId) ;
+                if(index !== -1) {
+                    res.push(ns.connected[id]);
+                }
+            } else {
+                res.push(ns.connected[id]);
+            }
+        }
+    }
+    return res;
+}
